@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import myImg from '/./ghibli.png'
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
  card: {
@@ -43,6 +44,7 @@ color="textSecondary">Photo: Picasso</Typography>
  <CardContent>
  <Typography variant="body1" component="p">
  Welcome to Lab 6 home page.
+ <Link to="/users"> Users </Link>
  </Typography>
  </CardContent>
  </Card>
