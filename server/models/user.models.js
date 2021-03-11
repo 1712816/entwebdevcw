@@ -23,7 +23,20 @@ const UserSchema = new mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
-  }
+  },
+  about: {
+    type: String,
+    trim: true,
+  },
+  profileclicks: {
+    type: Number,
+    default: 0,
+    min: 0
+  },
+  admin: {
+    type: Boolean,
+    default: false
+}
 })
 
 UserSchema
@@ -36,7 +49,7 @@ UserSchema
   .get(function() {
     return this._password
   })
-  
+
 UserSchema.path('hashed_password').validate(function(v) {
   if (this._password && this._password.length < 6) {
     this.invalidate('password', 'Password must be at least 6 characters.')

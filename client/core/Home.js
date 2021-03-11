@@ -40,10 +40,10 @@ export default function Home(){
  </Typography>
  <CardMedia className={classes.media} image={myImg} title="My Image"/>
  <Typography variant="body2" component="p" className={classes.credit}
-color="textSecondary">Photo: Picasso</Typography>
+color="textSecondary">Photo: Studio Ghibli</Typography>
  <CardContent>
  <Typography variant="body1" component="p">
- Welcome to Lab 6 home page.
+ Welcome to my website
  <Link to="/users"> Users </Link>
  </Typography>
  </CardContent>
