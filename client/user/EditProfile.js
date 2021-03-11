@@ -43,6 +43,7 @@ export default function EditProfile({ match }) {
     name: '',
     password: '',
     email: '',
+    about: '',
     open: false,
     error: '',
     redirectToProfile: false
