@@ -12,11 +12,12 @@ const useStyles = makeStyles(theme => ({
  maxWidth: 600,
  margin: 'auto',
  marginTop: theme.spacing(5),
- marginBottom: theme.spacing(5)
+ marginBottom: theme.spacing(5),
+ backgroundColor: '#242424'
  },
  title: {
  padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
- color: theme.palette.openTitle
+ color: 'white'
  },
  media: {
  minHeight: 400
@@ -24,11 +25,13 @@ const useStyles = makeStyles(theme => ({
  credit: {
  padding: 10,
  textAlign: 'right',
- backgroundColor: '#ededed',
+ backgroundColor: '#242424',
  borderBottom: '1px solid #d0d0d0',
+ color:'white' ,
  '& a':{
- color: '#3f4771'
+ color: 'red'
  }
+
  }
 }))
 export default function Home(){
