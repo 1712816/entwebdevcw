@@ -6,6 +6,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import myImg from '/./ghibli.png'
 import {Link} from 'react-router-dom'
+import { Grid }  from "@material-ui/core"
+
 
 const useStyles = makeStyles(theme => ({
  card: {
@@ -32,24 +34,44 @@ const useStyles = makeStyles(theme => ({
  color: 'red'
  }
 
- }
+}
 }))
 export default function Home(){
  const classes = useStyles()
  return (
+<Grid container spacing ={4}>
+<Grid item md ={4}>
  <Card className={classes.card}>
  <Typography variant="h6" className={classes.title}>
  Home Page
  </Typography>
  <CardMedia className={classes.media} image={myImg} title="My Image"/>
- <Typography variant="body2" component="p" className={classes.credit}
-color="textSecondary">Photo: Studio Ghibli</Typography>
+ <Typography variant="body2" component="p" className={classes.credit} color="textSecondary">Photo: Studio Ghibli</Typography>
  <CardContent>
  <Typography variant="body1" component="p">
  Welcome to my website
- <Link to="/users"> Users </Link>
  </Typography>
  </CardContent>
  </Card>
+</Grid>
+
+<Grid item md ={4}>
+ <Card className={classes.card}>
+ <Typography variant="h6" className={classes.title}>
+ Home Page
+ </Typography>
+ <CardMedia className={classes.media} image={myImg} title="My Image"/>
+ <Typography variant="body2" component="p" className={classes.credit} color="textSecondary">Photo: Studio Ghibli</Typography>
+ <CardContent>
+ <Typography variant="body1" component="p">
+ Welcome to my website
+ </Typography>
+ </CardContent>
+ </Card>
+</Grid>
+
+
+</Grid>
+
  )
 }
