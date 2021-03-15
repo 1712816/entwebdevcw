@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
 export default function Home(){
  const classes = useStyles()
  return (
+
 <Grid container spacing ={4}>
 <Grid item md ={4}>
  <Card className={classes.card}>
@@ -69,8 +70,6 @@ export default function Home(){
  </CardContent>
  </Card>
 </Grid>
-
-
 </Grid>
 
  )

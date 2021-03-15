@@ -9,6 +9,7 @@ import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import UserAdmin from './user/UsersAdmin'
+import Products from './core/Products.js'
 
 
 
@@ -20,6 +21,7 @@ const MainRouter = () => {
  <Route path="/users" component={Users}/>
  <Route path="/signup" component={Signup}/>
  <Route path="/signin" component={Signin}/>
+ <Route path="/Products" component={Products}/>
  <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
  <Route path="/user/:userId" component={Profile}/>
  <Route path="/useradmin/:userId" component={UserAdmin}/>
