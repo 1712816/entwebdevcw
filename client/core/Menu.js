@@ -1,4 +1,5 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -8,22 +9,21 @@ import Button from '@material-ui/core/Button'
 import auth from './../auth/auth-helper'
 import {Link, withRouter} from 'react-router-dom'
 
+
+
 const isActive = (history, path) => {
   if (history.location.pathname == path)
-    return {color: '#A78AFF'}
+    return {boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .5)'}
   else
-    return {color: '#ffffff'}
+    return {color: '#000000'}
 }
 const Menu = withRouter(({history}) => (
   <AppBar position="static">
-    <Toolbar>
-      <Typography variant="h6" color="inherit">
-        My website
-      </Typography>
-      <Link to="/">
-        <IconButton aria-label="Home" style={isActive(history, "/")}>
-          <HomeIcon/>
-        </IconButton>
+    <Toolbar variant="dense">
+    <Link to="/">
+      <Button size="large" style = {isActive(history, "/")}>
+        H E R M E S ||
+      </Button>
       </Link>
       <Link to="/users">
         <Button style={isActive(history, "/users")}>Users</Button>

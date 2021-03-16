@@ -3,8 +3,13 @@ import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
+import CardActions from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
+
+//importing the images for the products
 import blacktrench from '/./client/src/black-trench.jpg'
 import whitejumper from '/./client/src/white-jumper.jpg'
 import orangeshirt from '/./client/src/orange-shirt.jpg'
@@ -32,16 +37,9 @@ const useStyles = makeStyles(theme => ({
  media: {
  minHeight: 400
  },
- credit: {
- padding: 10,
- textAlign: 'right',
- backgroundColor: '#242424',
- borderBottom: '1px solid #d0d0d0',
- color:'white' ,
- '& a':{
- color: 'red'
- }
-
+ icon: {
+ color: 'white',
+ allignSelf:"flex-end"
 }
 }))
 export default function Products(){
@@ -61,6 +59,13 @@ export default function Products(){
   £245
  </Typography>
  </CardContent>
+ <CardActions>
+ <IconButton className={classes.icon}>
+ <AddShoppingCartIcon />
+ </IconButton>
+ </CardActions>
+
+
  </Card>
 </Grid>
 
@@ -75,7 +80,15 @@ export default function Products(){
  £85
  </Typography>
  </CardContent>
+ <CardActions>
+ <IconButton className={classes.icon}>
+ <AddShoppingCartIcon />
+ </IconButton>
+ </CardActions>
  </Card>
+
+
+
 </Grid>
 
 <Grid item md ={4}>
@@ -89,6 +102,11 @@ export default function Products(){
  £95
  </Typography>
  </CardContent>
+ <CardActions>
+ <IconButton className={classes.icon}>
+ <AddShoppingCartIcon />
+ </IconButton>
+ </CardActions>
  </Card>
 </Grid>
 
@@ -103,6 +121,11 @@ export default function Products(){
  £50
  </Typography>
  </CardContent>
+ <CardActions>
+ <IconButton className={classes.icon}>
+ <AddShoppingCartIcon />
+ </IconButton>
+ </CardActions>
  </Card>
 </Grid>
 
@@ -117,6 +140,11 @@ export default function Products(){
  £115
  </Typography>
  </CardContent>
+ <CardActions>
+ <IconButton className={classes.icon}>
+ <AddShoppingCartIcon />
+ </IconButton>
+ </CardActions>
  </Card>
 </Grid>
 
@@ -131,6 +159,11 @@ export default function Products(){
  £85
  </Typography>
  </CardContent>
+ <CardActions>
+ <IconButton className={classes.icon}>
+ <AddShoppingCartIcon />
+ </IconButton>
+ </CardActions>
  </Card>
 </Grid>
 
