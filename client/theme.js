@@ -20,6 +20,14 @@ const theme = createMuiTheme({
  openTitle: '#3f4771',
  protectedTitle: '#FF883B',
  type: 'light'
- }
- })
+},
+transitions: {
+easing: {
+easeInOut: 'linear',
+easeOut: 'linear',
+easeIn: 'linear',
+sharp: 'linear'
+},
+}
+})
  export default theme
