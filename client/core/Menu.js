@@ -8,6 +8,7 @@ import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp';
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer'
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import auth from './../auth/auth-helper'
 import {Link, withRouter} from 'react-router-dom'
@@ -53,11 +54,17 @@ return(
         </Button>
       </Link>
 
-      
-      <IconButton style={{marginLeft:'auto', marginRight:-12}} onClick={openingOfTheDrawer}>
+      <div style={{marginLeft:'auto', marginRight:-12}}>
+      <Link to ="/Basket">
+      <IconButton>
+      <ShoppingBasketIcon />
+      </IconButton>
+      </Link>
+
+      <IconButton onClick={openingOfTheDrawer}>
       <AccountCircleSharpIcon />
       </IconButton>
-
+      </div>
 
     </Toolbar>
 

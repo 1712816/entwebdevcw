@@ -9,6 +9,7 @@ import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import UserAdmin from './user/UsersAdmin'
 import Products from './core/Products.js'
+import Basket from './core/Basket.js'
 
 
 
@@ -23,6 +24,7 @@ const MainRouter = () => {
  <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
  <Route path="/user/:userId" component={Profile}/>
  <Route path="/useradmin/:userId" component={UserAdmin}/>
+ <Route path="/Basket" component={Basket}/>
 
  </Switch>
  </div>)
