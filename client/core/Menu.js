@@ -19,7 +19,6 @@ const isActive = (history, path) => {
     return {color: '#000000'}
 }
 
-
 const Menu = withRouter(({history}) => {
 
  const openingOfTheDrawer =() =>{
@@ -37,7 +36,7 @@ return(
       </Link>
 
       {
-        auth.isAuthenticated() && (
+          auth.isAuthenticated() && auth.isAuthenticated().user.admin && (
           <span>
           <Link to={"/useradmin/" + auth.isAuthenticated().user._id}>
           <Button style={isActive(history, "/useradmin")}>Users</Button>
@@ -81,7 +80,7 @@ return(
 
     </Toolbar>
 
-    <Drawer variant='temporary' open = {drawerOpen} anchor='right' onClose={drawerOpen}>
+    <Drawer variant='temporary' open = {drawerOpen} anchor='right'>
     <IconButton onClick={openingOfTheDrawer}>
     <AccountCircleSharpIcon />
     </IconButton>

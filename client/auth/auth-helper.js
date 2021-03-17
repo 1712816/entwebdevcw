@@ -10,6 +10,14 @@ const auth = {
  return false
  },
 
+
+ isAdminAuthenticated(user) {
+ if (user.admin)
+ return true
+ else
+ return false
+ },
+
  authenticate(jwt, cb) {
  if (typeof window !== "undefined")
  sessionStorage.setItem('jwt', JSON.stringify(jwt))
