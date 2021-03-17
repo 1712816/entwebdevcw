@@ -72,7 +72,7 @@ export default function Profile({ match }) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={user.name} secondary={user.email}/> {
-             auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id &&
+             ((auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id) || (auth.isAuthenticated().user.admin)) &&
               (<ListItemSecondaryAction>
                 <Link to={"/user/edit/" + user._id}>
                   <IconButton aria-label="Edit" color="primary">
