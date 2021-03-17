@@ -1,5 +1,6 @@
 import { signout } from './api-auth.js'
 const auth = {
+
  isAuthenticated() {
  if (typeof window == "undefined")
  return false
@@ -8,6 +9,7 @@ const auth = {
  else
  return false
  },
+
  authenticate(jwt, cb) {
  if (typeof window !== "undefined")
  sessionStorage.setItem('jwt', JSON.stringify(jwt))

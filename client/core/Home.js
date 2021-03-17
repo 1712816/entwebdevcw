@@ -61,7 +61,7 @@ strokeWidth: 1,
 }))
 export default function Home(){
 
- const classes = useStyles()
+const classes = useStyles()
 
 const [slideOne, setSlideOne] = React.useState(true);
 const [slideTwo, setSlideTwo] = React.useState(false);
@@ -90,7 +90,7 @@ const isActive =(active) =>{
   if(active == true)
     return { color: 'white', align: 'center'  }
   else {
-    return{ color:'#F58142', align: 'center' }
+    return{ color:'#85BEFF', align: 'center' }
   }
 
 }
@@ -98,13 +98,18 @@ const isActive =(active) =>{
 
    <div className={classes.root}>
       <div className={classes.wrapper}>
+
+        <Link to ="/Products">
         <Slide direction="right" in={slideOne} timeout={{
           appear: 500,
           enter: 300,
           exit: 500,
         }}  mountOnEnter unmountOnExit>
-            <img src={Newcollectionbanner} className ={classes.svg} />
+
+        <img src={Newcollectionbanner} className ={classes.svg}/>
+
         </Slide>
+        </Link>
 
         <Slide direction="left" in={slideTwo} timeout={{
           enter: 300,
