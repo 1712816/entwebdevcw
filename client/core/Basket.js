@@ -13,7 +13,7 @@ import Adjust from '@material-ui/icons/Adjust'
 import Newcollectionbanner from '/./client/src/newcollectionbanner.png'
 import Discountbanner from '/./client/src/discountbanner.png'
 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Grid }  from "@material-ui/core"
 
 const useStyles = makeStyles(theme => ({

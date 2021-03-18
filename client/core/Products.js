@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -7,6 +7,8 @@ import CardActions from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+
+import {list} from './../../client/products/api-products.js'
 
 
 //importing the images for the products
@@ -39,45 +41,69 @@ const useStyles = makeStyles(theme => ({
  },
  icon: {
  color: 'white',
- allignSelf:"flex-end"
+ marginLeft:'auto',
+ marginRight:-12
 }
 }))
-export default function Products(){
- const classes = useStyles()
+export default function Products({match}){
+
+  const classes = useStyles()
+  const [products, setProducts] = useState([])
+
+ useEffect(() => {
+     const abortController = new AbortController()
+     const signal = abortController.signal
+
+     list(signal).then((data) => {
+       if (data && data.error) {
+         console.log(data.error)
+       } else {
+       	console.log("Here is the user data")
+       	console.log(data)
+         setProducts(data)
+       }
+     })
+
+     return function cleanup(){
+       abortController.abort()
+     }
+   }, [match.params.productId])
+
+   const findImage = (imageName) => {
+
+     if(imageName == 'BLACK _ I C O N _ TRENCH'){
+     return blacktrench
+   }else if (imageName == 'WHITE _U N I O N _ CARDIGAN'){
+     return cardigan
+   }else if(imageName == 'CREAM _ C L E A N _ TURTLENECK'){
+     return whitejumper
+   }else if(imageName == 'YELLOW _ C L A S S _ TEE'){
+     return yellowtshirt
+   }else if (imageName == 'LILAC _ V I S C O S E _ SHIRT') {
+     return purpleshirt
+   }else if(imageName = 'ORANGE _ S P R I N G _ TEE'){
+     return orangeshirt
+   }else{
+     return "error"
+   }
+ }
+
+
+
  return (
 
 <Grid container spacing ={4}>
+{products.map((item, i) => {
 
-<Grid item md ={4}>
+return(<Grid item md ={4}>
  <Card className={classes.card}>
  <Typography variant="h6" className={classes.title}>
- BLACK _ I C O N _  TRENCH
+ {item.name}
  </Typography>
- <CardMedia className={classes.media} image={blacktrench} title="BLACK ICON TRENCH"/>
+ <CardMedia className={classes.media} image={findImage(item.name)} title={item.name}/>
  <CardContent>
  <Typography variant="body1" component="p">
-  £245
- </Typography>
- </CardContent>
- <CardActions>
- <IconButton className={classes.icon}>
- <AddShoppingCartIcon />
- </IconButton>
- </CardActions>
-
-
- </Card>
-</Grid>
-
-<Grid item md ={4}>
- <Card className={classes.card}>
- <Typography variant="h6" className={classes.title}>
- WHITE _ U N I O N _ CARDIGAN
- </Typography>
- <CardMedia className={classes.media} image={cardigan} title="WHITE UNION CARDIGAN"/>
- <CardContent>
- <Typography variant="body1" component="p">
- £85
+  £{item.price}
  </Typography>
  </CardContent>
  <CardActions>
@@ -86,87 +112,9 @@ export default function Products(){
  </IconButton>
  </CardActions>
  </Card>
-
-
-
-</Grid>
-
-<Grid item md ={4}>
- <Card className={classes.card}>
- <Typography variant="h6" className={classes.title}>
- LILAC _ V I S C O S E _ SHIRT
- </Typography>
- <CardMedia className={classes.media} image={purpleshirt} title="LILAC VISCOSE SHIRT"/>
- <CardContent>
- <Typography variant="body1" component="p">
- £95
- </Typography>
- </CardContent>
- <CardActions>
- <IconButton className={classes.icon}>
- <AddShoppingCartIcon />
- </IconButton>
- </CardActions>
- </Card>
-</Grid>
-
-<Grid item md ={4}>
- <Card className={classes.card}>
- <Typography variant="h6" className={classes.title}>
- ORANGE _ S P R I N G _ TEE
- </Typography>
- <CardMedia className={classes.media} image={orangeshirt} title="ORANGE SPRING TEE"/>
- <CardContent>
- <Typography variant="body1" component="p">
- £50
- </Typography>
- </CardContent>
- <CardActions>
- <IconButton className={classes.icon}>
- <AddShoppingCartIcon />
- </IconButton>
- </CardActions>
- </Card>
-</Grid>
-
-<Grid item md ={4}>
- <Card className={classes.card}>
- <Typography variant="h6" className={classes.title}>
- CREAM _ C L E A N _ TURTLENECK
- </Typography>
- <CardMedia className={classes.media} image={whitejumper} title="CREAM CLEAN TURTLENECK"/>
- <CardContent>
- <Typography variant="body1" component="p">
- £115
- </Typography>
- </CardContent>
- <CardActions>
- <IconButton className={classes.icon}>
- <AddShoppingCartIcon />
- </IconButton>
- </CardActions>
- </Card>
-</Grid>
-
-<Grid item md ={4}>
- <Card className={classes.card}>
- <Typography variant="h6" className={classes.title}>
- YELLOW _ CLASS _ TEE
- </Typography>
- <CardMedia className={classes.media} image={yellowtshirt} title="YELLOW CLASS TEE"/>
- <CardContent>
- <Typography variant="body1" component="p">
- £85
- </Typography>
- </CardContent>
- <CardActions>
- <IconButton className={classes.icon}>
- <AddShoppingCartIcon />
- </IconButton>
- </CardActions>
- </Card>
-</Grid>
-
+</Grid>)
+})
+}
 </Grid>
 
 

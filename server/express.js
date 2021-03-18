@@ -8,6 +8,7 @@ import helmet from 'helmet'
 import Template from './/./../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import productRoutes from './routes/product.routes'
 import devBundle from './devBundle'
 // modules for server side rendering
 import React from 'react'
@@ -33,12 +34,16 @@ app.use(compress())
 app.use(helmet())
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors())
+
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 //enable userRoutes for logins
 app.use('/', userRoutes)
 //enable authRoutes for logins
 app.use('/', authRoutes)
 //
-app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+app.use('/', productRoutes)
+
+
 //
 app.use((err, req, res, next) => {
  if (err.name === 'UnauthorizedError') {
