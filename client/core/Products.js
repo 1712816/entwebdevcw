@@ -95,7 +95,7 @@ export default function Products({match}){
 <Grid container spacing ={4}>
 {products.map((item, i) => {
 
-return(<Grid item md ={4}>
+return(<Grid item md ={4} sm={6} xs={12}>
  <Card className={classes.card}>
  <Typography variant="h6" className={classes.title}>
  {item.name}
