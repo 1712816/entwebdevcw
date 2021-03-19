@@ -12,6 +12,8 @@ import Adjust from '@material-ui/icons/Adjust'
 
 import Newcollectionbanner from '/./client/src/newcollectionbanner.png'
 import Discountbanner from '/./client/src/discountbanner.png'
+import ModelPic from '/./client/src/modelpic.jpg'
+import CouchPic from '/./client/src/couchpic.jpg'
 
 import {Link} from 'react-router-dom'
 import { Grid }  from "@material-ui/core"
@@ -42,10 +44,14 @@ strokeWidth: 1,
  },
  title: {
  padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
+ textAlign: 'center',
  color: 'white'
  },
  media: {
- maxHeight: 400
+ maxHeight: 700,
+ marginLeft:'auto',
+ marginRight:'auto',
+ padding:50
  },
  credit: {
  padding: 10,
@@ -130,16 +136,33 @@ const isActive =(active) =>{
       </IconButton>
 
       </div>
-      <Paper style={{justifyContent:'center',display:'flex'}}>LOREM IPSUM</Paper>
-      <Paper style={{marginTop:'auto'}}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tincidunt diam a tellus molestie fringilla. Ut eget libero elementum, dapibus elit et, interdum odio. Praesent eget dapibus lectus, eget vestibulum arcu. Aliquam erat volutpat. Vivamus rutrum ultricies odio sed pulvinar. In sed vestibulum tortor, ut tempor odio. Ut eleifend tincidunt est in viverra. Aliquam nec velit et felis pulvinar convallis. Nulla placerat ut dolor in facilisis. Duis euismod felis ut lorem condimentum aliquet. Pellentesque blandit eu nibh vel mattis. Sed mollis luctus lectus luctus bibendum. Phasellus id quam elementum, vestibulum turpis at, aliquam ipsum. Sed auctor eros mauris, in cursus elit feugiat id.
 
-Maecenas tempor faucibus ipsum, et malesuada metus interdum ut. Mauris molestie neque nec venenatis rutrum. Duis vitae neque nunc. Mauris aliquam mattis dui, vitae blandit ante euismod eu. Etiam vitae diam in purus ornare euismod. Donec a ullamcorper ipsum, eu tincidunt ligula. In condimentum, sapien quis scelerisque pulvinar, felis diam fermentum lorem, sit amet lobortis sapien elit non urna. Etiam ac posuere ex. Praesent dictum ac ipsum sit amet congue. Donec placerat, massa eu rhoncus pharetra, nisl velit aliquet urna, semper fringilla metus mauris id massa. Vivamus pellentesque est non nunc commodo, dignissim lacinia enim porta.
+      <Grid container spacing ={6}>
 
-Curabitur et libero enim. Ut lacinia sagittis ultricies. Maecenas eget odio vitae magna tempus lobortis. Vivamus quis erat ut elit pretium consectetur. Donec ac eros ex. Aliquam vitae molestie nisi, porttitor pretium lectus. In ullamcorper erat neque, sed porta ante vehicula pharetra. Mauris tempus dolor vitae ullamcorper eleifend. Nam eget viverra arcu.
+      <Grid item md={6}>
+      <Card className={classes.card}>
+      <Typography className={classes.title}>ABOUT US</Typography>
+      <img className={classes.media} src={ModelPic}/>
+      <CardContent>
+      <Typography> H E R M E S is named after the greek god of the same name, he was described as the god of the merchants and thats the goal we strive for. All of our products are sustainable, we try to lower our carbon footprint as much as possible. Please support us, we're not like those other shops don't worry</Typography>
+      </CardContent>
+      </Card>
+      </Grid>
 
-Duis maximus ornare varius. Donec viverra eros risus, nec elementum mauris vehicula quis. Pellentesque porta ac erat vitae posuere. Sed commodo egestas leo, sit amet commodo nisl semper sagittis. Praesent venenatis id enim sit amet ornare. Curabitur euismod sagittis tincidunt. Pellentesque egestas dui a urna lobortis facilisis.
+      <Grid item md={6}>
+      <Card className={classes.card}>
+      <Typography className={classes.title}>NEW COLLECTION</Typography>
+      <img className={classes.media} src={CouchPic}/>
+      <CardContent>
+      <Typography>We have a new collection relased that is crying out for you to wear. You need a new dress for that date coming up? Do just need some lounge wear or do you want to try something new. Take a browse we know you'll like something</Typography>
+      </CardContent>
+      </Card>
+      </Grid>
 
-Proin in velit quis tellus faucibus placerat. In consequat mi et mi ultricies, vitae accumsan sem iaculis. Donec semper mi id velit maximus, nec rutrum odio egestas. Vestibulum vestibulum odio ut vulputate pulvinar. Nam vehicula maximus lectus sit amet pretium. Nunc quis suscipit dolor. Aliquam egestas dapibus rutrum. Aenean in imperdiet sem. Nullam vitae velit sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius congue tortor nec efficitur. Donec blandit nisl at ligula lacinia lobortis. Phasellus nec eros vehicula, scelerisque elit vitae, pulvinar ligula. Mauris imperdiet dignissim erat, nec convallis nunc auctor vel.</Paper>
+
+      </Grid>
+
+
       </div>
 
 
