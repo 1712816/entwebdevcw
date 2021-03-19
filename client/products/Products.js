@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -6,10 +6,15 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CardActions from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import AddIcon from '@material-ui/icons/Add';
 
-import {list} from './../../client/products/api-products.js'
+import Snackbar from '@material-ui/core/Snackbar'
+import Slide from '@material-ui/core/Slide'
 
+
+import {list} from './api-products.js'
 
 //importing the images for the products
 import blacktrench from '/./client/src/black-trench.jpg'
@@ -21,6 +26,7 @@ import purpleshirt from '/./client/src/purple-shirt.jpg'
 
 import { Link } from 'react-router-dom'
 import { Grid }  from "@material-ui/core"
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,10 +51,22 @@ const useStyles = makeStyles(theme => ({
  marginRight:-12
 }
 }))
+
+
+
 export default function Products({match}){
+
+  var shoppingcartArray = []
 
   const classes = useStyles()
   const [products, setProducts] = useState([])
+
+String.prototype.replaceAtIndex = function(index, newString){
+    return this.substr(0, index) + newString;
+}
+
+
+
 
  useEffect(() => {
      const abortController = new AbortController()
@@ -71,31 +89,40 @@ export default function Products({match}){
 
    const findImage = (imageName) => {
 
-     if(imageName == 'BLACK _ I C O N _ TRENCH'){
+     if(imageName == 'BLACK_ICON_TRENCH'){
      return blacktrench
-   }else if (imageName == 'WHITE _U N I O N _ CARDIGAN'){
+   }else if (imageName == 'WHITE_UNION_CARDIGAN'){
      return cardigan
-   }else if(imageName == 'CREAM _ C L E A N _ TURTLENECK'){
+   }else if (imageName == 'CREAM_CLEAN_TURTLENECK'){
      return whitejumper
-   }else if(imageName == 'YELLOW _ C L A S S _ TEE'){
+   }else if(imageName == 'YELLOW_CLASS_TEE'){
      return yellowtshirt
-   }else if (imageName == 'LILAC _ V I S C O S E _ SHIRT') {
+   }else if (imageName == 'LILAC_VISCOSE_SHIRT') {
      return purpleshirt
-   }else if(imageName = 'ORANGE _ S P R I N G _ TEE'){
+   }else if(imageName = 'ORANGE_SPRING_TEE'){
      return orangeshirt
    }else{
      return "error"
    }
  }
 
+ const getNewAdd = (productName) =>{
 
+   console.log(productName);
+   console.log(addedItems.includes(productName));
+   return addedItems.includes(products.name);
+
+ }
 
  return (
-
+<div>
 <Grid container spacing ={4}>
+
 {products.map((item, i) => {
 
-return(<Grid item md ={4} sm={6} xs={12}>
+return(
+
+  <Grid item md ={4} sm={6} xs={12}>
  <Card className={classes.card}>
  <Typography variant="h6" className={classes.title}>
  {item.name}
@@ -107,16 +134,65 @@ return(<Grid item md ={4} sm={6} xs={12}>
  </Typography>
  </CardContent>
  <CardActions>
- <IconButton className={classes.icon}>
+
+
+
+ <IconButton className={classes.icon} onClick={() =>{
+
+     var addedProduct = false;
+
+     for(var i=0; i<shoppingcartArray.length; i++){
+       if(shoppingcartArray[i].includes(item.name)){
+
+         addedProduct = true
+         var index = item.name.length;
+         var newQuantity = parseInt(shoppingcartArray[i].charAt(index))+1;
+         var updateBasket = shoppingcartArray[i].replaceAtIndex(index, newQuantity)
+
+         shoppingcartArray.splice(i,1,updateBasket)
+         console.log(shoppingcartArray)
+       }
+
+      }
+      if(addedProduct === false){
+      shoppingcartArray.push(item.name +"1");
+
+      addedProduct = true
+      console.log(shoppingcartArray)
+    }
+
+
+
+      }
+
+
+    }>
+
  <AddShoppingCartIcon />
  </IconButton>
+
+
+
+
  </CardActions>
  </Card>
+
 </Grid>)
 })
 }
+
 </Grid>
 
+<Link to ='Cart'>
+<Button onClick ={() => {
+sessionStorage.setItem("userCart",JSON.stringify(shoppingcartArray))
+
+}}> Shopping Cart</Button>
+</Link>
+
+</div>
 
  )
+
+
 }

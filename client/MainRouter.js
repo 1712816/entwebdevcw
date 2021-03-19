@@ -8,8 +8,8 @@ import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import UserAdmin from './user/UsersAdmin'
-import Products from './core/Products.js'
-import Basket from './core/Basket.js'
+import Products from './products/Products.js'
+import Cart from './core/Cart.js'
 
 
 
@@ -24,7 +24,7 @@ const MainRouter = () => {
  <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
  <Route path="/user/:userId" component={Profile}/>
  <Route path="/useradmin/:userId" component={UserAdmin}/>
- <Route path="/Basket" component={Basket}/>
+ <Route path="/Cart" component={Cart}/>
 
  </Switch>
  </div>)
