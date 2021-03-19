@@ -16,10 +16,17 @@ router.route('/api/users/:userId')
   .put(userCtrl.update)
   .delete(userCtrl.remove)
 
+
+
 router.route('/api/users/:userId')
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.read)
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove)
+
+
+// router.route('/api/users/cart/:userId')
+//   .put(userCtrl.updateTenCent)
+//   .put(userCtrl.updateTenPound)
 
 router.param('userId', userCtrl.userByID)
 

@@ -36,6 +36,18 @@ const UserSchema = new mongoose.Schema({
   admin: {
     type: Boolean,
     default: false
+},
+tenpoundoffclicks:{
+   type: Number,
+   default: 0,
+   min: 0
+
+},
+tencentoffclicks:{
+   type: Number,
+   default: 0,
+   min: 0
+
 }
 })
 

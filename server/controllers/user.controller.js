@@ -54,7 +54,7 @@ const list = async (req, res) => {
 
 const listadmin = async (req, res) => {
   try {
-    let users = await User.find().select('name email about updated created admin')
+    let users = await User.find().select('name email about updated created admin tenpoundoffclicks tencentoffclicks profileclicks')
     res.json(users)
   } catch (err) {
     return res.status(400).json({
@@ -62,6 +62,7 @@ const listadmin = async (req, res) => {
     })
   }
 }
+
 
 const update = async (req, res) => {
   try {
@@ -71,6 +72,44 @@ const update = async (req, res) => {
     user.updated = Date.now()
     //passively recording updates by user
     user.profileclicks = user.profileclicks + 1
+    await user.save()
+    user.hashed_password = undefined
+    user.salt = undefined
+    res.json(user)
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+const updateTenPound = async (req, res) => {
+  try {
+
+    let user = req.profile
+    user = extend(user, req.body)
+    //passively recording updates by user
+    user.tenpoundoffclicks = user.tenpoundoffclicks + 1
+    await user.save()
+    user.hashed_password = undefined
+    user.salt = undefined
+    res.json(user)
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+const updateTenCent = async (req, res) => {
+  try {
+
+    let user = req.profile
+    user = extend(user, req.body)
+
+    //passively recording updates by user
+    user.tencentoffclicks = user.tencentoffclicks + 1
+
     await user.save()
     user.hashed_password = undefined
     user.salt = undefined
@@ -103,5 +142,8 @@ export default {
   list,
   listadmin,
   remove,
-  update
+  update,
+  updateTenCent,
+  updateTenPound
+
 }

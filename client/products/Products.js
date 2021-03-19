@@ -118,6 +118,8 @@ String.prototype.replaceAtIndex = function(index, newString){
 <div>
 <Grid container spacing ={4}>
 
+
+
 {products.map((item, i) => {
 
 return(
@@ -182,13 +184,14 @@ return(
 }
 
 </Grid>
-
+<div style={{textAlign:'center'}}>
 <Link to ='Cart'>
-<Button onClick ={() => {
+<Button size='large' style={{backgroundColor:'white',position: 'absolute' }} onClick ={() => {
 sessionStorage.setItem("userCart",JSON.stringify(shoppingcartArray))
 
-}}> Shopping Cart</Button>
+}}> Go To Your Shopping Cart</Button>
 </Link>
+</div>
 
 </div>
 

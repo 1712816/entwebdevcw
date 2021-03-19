@@ -130,7 +130,16 @@ const isActive =(active) =>{
       </IconButton>
 
       </div>
+      <Paper style={{justifyContent:'center',display:'flex'}}>LOREM IPSUM</Paper>
+      <Paper style={{marginTop:'auto'}}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tincidunt diam a tellus molestie fringilla. Ut eget libero elementum, dapibus elit et, interdum odio. Praesent eget dapibus lectus, eget vestibulum arcu. Aliquam erat volutpat. Vivamus rutrum ultricies odio sed pulvinar. In sed vestibulum tortor, ut tempor odio. Ut eleifend tincidunt est in viverra. Aliquam nec velit et felis pulvinar convallis. Nulla placerat ut dolor in facilisis. Duis euismod felis ut lorem condimentum aliquet. Pellentesque blandit eu nibh vel mattis. Sed mollis luctus lectus luctus bibendum. Phasellus id quam elementum, vestibulum turpis at, aliquam ipsum. Sed auctor eros mauris, in cursus elit feugiat id.
 
+Maecenas tempor faucibus ipsum, et malesuada metus interdum ut. Mauris molestie neque nec venenatis rutrum. Duis vitae neque nunc. Mauris aliquam mattis dui, vitae blandit ante euismod eu. Etiam vitae diam in purus ornare euismod. Donec a ullamcorper ipsum, eu tincidunt ligula. In condimentum, sapien quis scelerisque pulvinar, felis diam fermentum lorem, sit amet lobortis sapien elit non urna. Etiam ac posuere ex. Praesent dictum ac ipsum sit amet congue. Donec placerat, massa eu rhoncus pharetra, nisl velit aliquet urna, semper fringilla metus mauris id massa. Vivamus pellentesque est non nunc commodo, dignissim lacinia enim porta.
+
+Curabitur et libero enim. Ut lacinia sagittis ultricies. Maecenas eget odio vitae magna tempus lobortis. Vivamus quis erat ut elit pretium consectetur. Donec ac eros ex. Aliquam vitae molestie nisi, porttitor pretium lectus. In ullamcorper erat neque, sed porta ante vehicula pharetra. Mauris tempus dolor vitae ullamcorper eleifend. Nam eget viverra arcu.
+
+Duis maximus ornare varius. Donec viverra eros risus, nec elementum mauris vehicula quis. Pellentesque porta ac erat vitae posuere. Sed commodo egestas leo, sit amet commodo nisl semper sagittis. Praesent venenatis id enim sit amet ornare. Curabitur euismod sagittis tincidunt. Pellentesque egestas dui a urna lobortis facilisis.
+
+Proin in velit quis tellus faucibus placerat. In consequat mi et mi ultricies, vitae accumsan sem iaculis. Donec semper mi id velit maximus, nec rutrum odio egestas. Vestibulum vestibulum odio ut vulputate pulvinar. Nam vehicula maximus lectus sit amet pretium. Nunc quis suscipit dolor. Aliquam egestas dapibus rutrum. Aenean in imperdiet sem. Nullam vitae velit sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius congue tortor nec efficitur. Donec blandit nisl at ligula lacinia lobortis. Phasellus nec eros vehicula, scelerisque elit vitae, pulvinar ligula. Mauris imperdiet dignissim erat, nec convallis nunc auctor vel.</Paper>
       </div>
 
 

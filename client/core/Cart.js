@@ -6,13 +6,28 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button'
 import ListItemText from '@material-ui/core/ListItemText'
 import List from '@material-ui/core/List'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import TextField from '@material-ui/core/TextField'
 import Snackbar from '@material-ui/core/Snackbar';
+import Avatar from '@material-ui/core/Avatar';
 import Dialog from "@material-ui/core/Dialog"
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+
+import auth from '/./client/auth/auth-helper'
+import {updateTenCent, updateTenPound,read} from '/./client/user/api-user.js'
+
+
+//importing the images for the products
+import blacktrench from '/./client/src/black-trench.jpg'
+import whitejumper from '/./client/src/white-jumper.jpg'
+import orangeshirt from '/./client/src/orange-shirt.jpg'
+import cardigan from '/./client/src/cardigan.jpg'
+import yellowtshirt from '/./client/src/yellow-tshirt.jpg'
+import purpleshirt from '/./client/src/purple-shirt.jpg'
+
 
 
 import {list} from '/./client/products/api-products.js'
@@ -26,51 +41,50 @@ const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
       padding: theme.spacing(1),
       margin: theme.spacing(5)
-    }),
-wrapper: {
-maxHeight:360,
-paddingTop:10,
-},
-svg: {
-maxHeight: 360,
-maxWidth: '100%'
-},
-polygon: {
-fill: theme.palette.common.white,
-stroke: theme.palette.divider,
-strokeWidth: 1,
-},
- card: {
- maxWidth: 600,
- margin: 'auto',
- marginTop: theme.spacing(5),
- marginBottom: theme.spacing(5),
- backgroundColor: '#242424'
- },
- title: {
- padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
- color: '#000000'
- },
- media: {
- maxHeight: 400
- },
- credit: {
- padding: 10,
- textAlign: 'right',
- backgroundColor: '#242424',
- borderBottom: '1px solid #d0d0d0',
- color:'white' ,
- '& a':{
- color: 'red'
- }
+    })
 
 }
-}))
+))
 export default function Cart({match}){
+
+
+
+  const findImage = (imageName) => {
+
+    if(imageName == 'BLACK_ICON_TRENCH'){
+    return blacktrench
+  }else if (imageName == 'WHITE_UNION_CARDIGAN'){
+    return cardigan
+  }else if (imageName == 'CREAM_CLEAN_TURTLENECK'){
+    return whitejumper
+  }else if(imageName == 'YELLOW_CLASS_TEE'){
+    return yellowtshirt
+  }else if (imageName == 'LILAC_VISCOSE_SHIRT') {
+    return purpleshirt
+  }else if(imageName = 'ORANGE_SPRING_TEE'){
+    return orangeshirt
+  }else{
+    return "error"
+  }
+  }
+
+
+
+  // const [values, setValues] = useState({
+  //     name: '',
+  //     password: '',
+  //     email: '',
+  //     about: '',
+  //     open: false,
+  //     error: '',
+  //     redirectToProfile: false
+  //   })
+
 
 var [checkoutDialog, setCheckoutDialog] = useState(false)
 var [discountPrice, setDiscountPrice] = useState(0)
 
+const jwt = auth.isAuthenticated()
 
 const handleChange = text => event => {
     setDiscountCodeText({ ...discountCodeText, [text]: event.target.value })
@@ -82,11 +96,8 @@ const handleChange = text => event => {
     };
 
 
-
-
 var totalCost = 0
 var subCost = 0
-
 
 
 
@@ -99,6 +110,26 @@ setCheckoutDialog(true)
 }
 
 const tenpoundOff = () =>{
+
+  // const user = {
+  //       name: values.name || undefined,
+  //       email: values.email || undefined,
+  //       password: values.password || undefined,
+  //       about: values.about || undefined
+  //     }
+
+
+// updateTenPound({
+//       userId: match.params.userId
+//     }, {
+//       t: jwt.token
+//     }, user).then((data) => {
+//       if (data && data.error) {
+//         setValues({...values, error: data.error})
+//       } else {
+//         setValues({...values, userId: data._id, redirectToProfile: true})
+//       }
+//     })
 
 setDiscountPrice( totalCost - 10)
 
@@ -129,12 +160,26 @@ useEffect(() => {
        console.log("Here is the user data")
        console.log(data)
         setProducts(data)
+
       }
     })
+
+
+    // read({
+    //   userId: match.params.userId
+    // }, {t: jwt.token}, signal).then((data) => {
+    //   if (data && data.error) {
+    //     setValues({...values, error: data.error})
+    //   } else {
+    //     setValues({...values, name: data.name, email: data.email})
+    //   }
+    // })
+
 
     return function cleanup(){
       abortController.abort()
     }
+
   }, [match.params.productId])
 
  return (
@@ -157,7 +202,7 @@ useEffect(() => {
       totalCost = totalCost + subCost
     return(
       <span>
-      <ListItemText primary={item.name}/> <ListItemText primary={"Quantity - " + quantity}/> <ListItemText primary={"Cost - £" + (subCost)}/>
+      <ListItemAvatar> <Avatar src = {findImage(item.name)} /> </ListItemAvatar ><ListItemText primary={item.name}/> <ListItemText primary={"Quantity - " + quantity}/> <ListItemText primary={"Cost - £" + (subCost)}/>
       <Divider />
       </span>
     )
