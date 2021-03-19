@@ -1,27 +1,26 @@
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
-import Slide from '@material-ui/core/Slide';
-import Switch from '@material-ui/core/Switch';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton'
-import Adjust from '@material-ui/icons/Adjust'
 import Button from '@material-ui/core/Button'
 import ListItemText from '@material-ui/core/ListItemText'
 import List from '@material-ui/core/List'
+import TextField from '@material-ui/core/TextField'
+import Snackbar from '@material-ui/core/Snackbar';
+import Dialog from "@material-ui/core/Dialog"
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 import {list} from '/./client/products/api-products.js'
 
-
-import Newcollectionbanner from '/./client/src/newcollectionbanner.png'
-import Discountbanner from '/./client/src/discountbanner.png'
-
 import { Link } from 'react-router-dom'
 import { Grid }  from "@material-ui/core"
+
+
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -69,11 +68,45 @@ strokeWidth: 1,
 }))
 export default function Cart({match}){
 
-var totalQuantity = 0
+var [checkoutDialog, setCheckoutDialog] = useState(false)
+var [discountPrice, setDiscountPrice] = useState(0)
 
+
+const handleChange = text => event => {
+    setDiscountCodeText({ ...discountCodeText, [text]: event.target.value })
+  }
+
+
+  const handleClose = () => {
+      setCheckoutDialog(false);
+    };
+
+
+
+
+var totalCost = 0
+var subCost = 0
+
+
+
+
+const tencentOff= () =>{
+
+setDiscountPrice(totalCost * 0.9)
+
+setCheckoutDialog(true)
+
+}
+
+const tenpoundOff = () =>{
+
+setDiscountPrice( totalCost - 10)
+
+  setCheckoutDialog(true)
+
+}
 
 const [products, setProducts] = useState([])
-
 const classes = useStyles()
 
 
@@ -116,34 +149,50 @@ useEffect(() => {
     var name = userCart[x]
     var quantity = name.charAt(name.length-1)
     var name = name.slice(0,-1);
-    totalQuantity = totalQuantity + (item.price*quantity);
 
 
     if(item.name.localeCompare(name)===0){
 
+      subCost = item.price*quantity;
+      totalCost = totalCost + subCost
     return(
       <span>
-      <ListItemText primary={item.name}/> <ListItemText primary={quantity}/> <ListItemText primary={"£" + (item.price*quantity)}/>
+      <ListItemText primary={item.name}/> <ListItemText primary={"Quantity - " + quantity}/> <ListItemText primary={"Cost - £" + (subCost)}/>
       <Divider />
       </span>
     )
-
     }
   }
-
     }
-
-
   )
     }
 }
 
-<ListItemText primary={"Grand Total £" + totalQuantity}/>
+<ListItemText primary={"Grand Total £" + totalCost}/>
 <Divider />
-
 </List>
-
   </Paper>
+
+<Paper>
+
+
+<Button variant="contained" onClick={tencentOff}>10% Off</Button>
+<Divider />
+<Button variant="contained" onClick={tenpoundOff}>£10 off</Button>
+
+</Paper>
+
+
+<Dialog open={checkoutDialog} onClose={handleClose}>
+<DialogTitle> YOUR ITEMS ARE ON THEIR WAY.. don't question it.. we know where you live </DialogTitle>
+<DialogContent>
+<DialogContentText> The total cost of your shop was - £{discountPrice}</DialogContentText>
+</DialogContent>
+<DialogActions>
+<Button onClick={handleClose}>
+            EXIT </Button>
+</DialogActions>
+</Dialog>
 
   </div>
 
